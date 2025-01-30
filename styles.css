@@ -1,0 +1,151 @@
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+#map {
+  width: 100%;
+  background-color: #e9ecef;
+  border-radius: 5px;
+  margin-top: 20px;
+  height: 300px;
+}
+
+.card {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1,
+h2 {
+  color: #343a40;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+button:focus {
+  outline: none;
+}
+
+button#searchButton {
+  background-color: #007bff;
+  color: white;
+  border: none;
+}
+
+button#searchButton:hover {
+  background-color: #0056b3;
+}
+
+button#submitComment {
+  background-color: #28a745;
+  color: white;
+  border: none;
+}
+
+button#submitComment:hover {
+  background-color: #218838;
+}
+
+button#uploadButton {
+  background-color: #ffc107;
+  color: white;
+  border: none;
+}
+
+button#uploadButton:hover {
+  background-color: #e0a800;
+}
+
+#commentSection p {
+  padding: 8px;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+#uploadedImages img {
+  margin-top: 10px;
+  max-width: 100px;
+  max-height: 100px;
+  margin-right: 10px;
+}
+
+#lang-en,
+#lang-zu,
+#lang-so {
+  font-weight: bold;
+}
+
+#lang-en {
+  background-color: #17a2b8;
+  color: white;
+}
+
+#lang-zu {
+  background-color: #28a745;
+  color: white;
+}
+
+#lang-so {
+  background-color: #ffc107;
+  color: white;
+}
+
+#lang-en:hover,
+#lang-zu:hover,
+#lang-so:hover {
+  background-color: #0056b3;
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+button#homeButton {
+  background-color: #007bff;
+  color: white;
+  border: none;
+}
+
+button#homeButton:hover {
+  background-color: #0056b3;
+}
+
+button#backButton {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+}
+
+button#backButton:hover {
+  background-color: #5a6268;
+}
