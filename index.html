@@ -20,13 +20,8 @@
     </div>
   </nav>
 
-  
-
-
-  
   <!-- Main Content -->
   <div class="container mt-5">
-    <!-- QR Scanner Section -->
     <div id="qrSection">
       <h2 id="qrTitle">Scan QR Code</h2>
       <video id="qrScanner" width="100%" height="300" class="bg-dark"></video>
@@ -34,7 +29,6 @@
       <p id="qrResult" class="mt-2"></p>
     </div>
 
-    <!-- Search for Shops Section -->
     <div id="searchSection" class="mt-5">
       <h2 id="search">Search for Shops</h2>
       <input type="text" id="searchInput" class="form-control" placeholder="Enter location">
@@ -43,13 +37,12 @@
       <div id="searchResults" class="mt-4"></div>
     </div>
 
-    <!-- Compliance Dashboard Section (Initially hidden) -->
     <div id="complianceSection" class="mt-5" style="display: none;">
       <h2 id="complianceBadge">Compliance</h2>
       <div class="card p-3">
-        <p id="shopName">Shop Name: Mohhamed Tuck Shop</p>
+        <p id="shopName">Shop Name: Mohammed Tuck Shop</p>
         <p id="ownerName">Owner: Mohammed John</p>
-        <p id="email">Email: Mohammed@example.com</p>
+        <p id="email">Email: spaza@example.com</p>
         <p id="phone">Phone: 071-456-7890</p>
         <p id="opened">Opened: 2020</p>
       </div>
@@ -58,17 +51,18 @@
       <button id="submitComment" class="btn btn-success mt-2">Submit</button>
       <div id="commentSection" class="mt-3"></div>
     </div>
- 
-    <!-- Buttons for Home and Back -->
+
     <button id="homeButton" class="btn btn-primary">Home</button>
     <button id="backButton" class="btn btn-secondary">Back</button>
   </div>
- <!-- Footer -->
+
+  <!-- Footer -->
   <footer class="bg-dark text-white text-center py-3 mt-5">
-    <p>&copy; 2025 Developed by Thuthuka Tech</p>
+    <p>&copy; 2025 Developed by Thuthukatech</p>
   </footer>
+
   <script src="script.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap" async defer></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATQcX8fZiMSozcbYV8-D4UmfxcYwyDTfY&callback=initMap" async defer></script>
   <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.min.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-storage.js"></script>
