@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generate QR Code for Jabulani Compliance</title>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+</head>
+<body>
+  <div>
+    <h2>Scan QR Code to Visit Jabulani Compliance</h2>
+    <div id="qrcode"></div>
+  </div>
+
+  <script>
+    // Generate QR Code for Jabulani compliance URL
+    const url = "https://compliance-app-ecru.vercel.app/jabulani"; // URL of the Jabulani compliance page
+    QRCode.toCanvas(document.getElementById('qrcode'), url, function (error) {
+      if (error) console.error(error);
+      console.log("QR Code successfully generated!");
+    });
+  </script>
+</body>
+</html>
