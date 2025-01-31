@@ -1,9 +1,3 @@
-// Import Firebase Authentication methods from Firebase SDK
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-
-// Initialize Firebase Authentication instance
-const auth = getAuth();
-
 // Translation Data
 const translations = {
   en: {
@@ -62,91 +56,102 @@ document.getElementById("lang-so").addEventListener("click", function () {
   changeLanguage("so");
 });
 
-// Register User in Firebase
-document.getElementById("registrationForm").addEventListener("submit", (e) => {
-  e.preventDefault();
+// Static store data (used in combination with Google Maps search)
+const staticShops = [
+  { name: "Mohammed's Shop", location: "Jabulani", lat: -26.2041, lng: 28.0473 },
+  { name: "Achmed's Shop", location: "Dube", lat: -29.8587, lng: 31.0218 },
+  { name: "Mam' Ruby's Shop", location: "Orlando", lat: -33.9249, lng: 18.4241 },
+];
 
-  const email = document.getElementById("regEmail").value;
-  const password = document.getElementById("regPassword").value;
-
-  // Firebase create user with email and password
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Registered successfully
-      const user = userCredential.user;
-      alert("User registered successfully!");
-      // Redirect to login page
-      window.location.href = "login.html";
-    })
-    .catch((error) => {
-      alert("Error: " + error.message);
-    });
-});
-
-// Initialize Google Maps
+// Initialize Google Maps and Get User Location
 let map;
+let service;
+let userLocation;
+
 function initMap() {
-  map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: -26.2041, lng: 28.0473 }, // Default location
-    zoom: 12,
-  });
+  // Ask for the user's location when the page loads
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      function (position) {
+        // User allowed location access, get the coordinates
+        userLocation = new google.maps.LatLng(
+          position.coords.latitude,
+          position.coords.longitude
+        );
 
-  // Add marker logic for search results
-  const shops = [
-    { name: "Mohammeds Shop", location: "Jabulani", lat: -26.2041, lng: 28.0473 },
-    { name: "Achmed's", location: "Dube", lat: -29.8587, lng: 31.0218 },
-    { name: "Mam' Ruby's", location: "Orlando", lat: -33.9249, lng: 18.4241 },
-  ];
+        // Initialize the map centered around the user's location
+        map = new google.maps.Map(document.getElementById("map"), {
+          center: userLocation,
+          zoom: 12,
+        });
 
-  document.getElementById("searchButton").addEventListener("click", () => {
-    const query = document.getElementById("searchInput").value.toLowerCase();
-    const results = shops.filter((shop) => shop.location.toLowerCase().includes(query));
-    document.getElementById("searchResults").innerHTML = "";
-    results.forEach((shop) => {
-      const p = document.createElement("p");
-      p.textContent = `${shop.name} - ${shop.location}`;
-      p.onclick = () => loadStoreCompliance(shop);
-      document.getElementById("searchResults").appendChild(p);
+        // Display the user's location on the map
+        new google.maps.Marker({
+          position: userLocation,
+          map: map,
+          title: "Your Location",
+        });
+
+        // Search for spaza shops near the user's location
+        service = new google.maps.places.PlacesService(map);
+        const request = {
+          location: userLocation,
+          radius: 5000, // 5 km radius
+          type: ["store"],
+        };
+
+        service.nearbySearch(request, handleSearchResults);
+      },
+      function () {
+        // User denied location access or there's an error
+        alert("Unable to retrieve your location.");
+      }
+    );
+  }
+}
+
+// Handle search results from both static data and places search
+function handleSearchResults(results, status) {
+  const searchInput = document.getElementById("searchInput").value.toLowerCase();
+  const resultsContainer = document.getElementById("searchResults");
+  resultsContainer.innerHTML = ""; // Clear previous results
+
+  if (status === google.maps.places.PlacesServiceStatus.OK) {
+    // Add Google Places search results
+    results.forEach((place) => {
+      const placeName = place.name.toLowerCase();
+      if (placeName.includes(searchInput)) {
+        const shopButton = document.createElement("button");
+        shopButton.textContent = place.name;
+        shopButton.classList.add("btn", "btn-info", "mt-2");
+        shopButton.onclick = () => loadStoreCompliance(place);
+        resultsContainer.appendChild(shopButton);
+
+        new google.maps.Marker({
+          position: place.geometry.location,
+          map: map,
+          title: place.name,
+        });
+      }
+    });
+  }
+
+  // Add static store data (if they match search input)
+  staticShops.forEach((shop) => {
+    if (shop.location.toLowerCase().includes(searchInput)) {
+      const shopButton = document.createElement("button");
+      shopButton.textContent = `${shop.name} - ${shop.location}`;
+      shopButton.classList.add("btn", "btn-info", "mt-2");
+      shopButton.onclick = () => loadStoreCompliance(shop);
+      resultsContainer.appendChild(shopButton);
+
       new google.maps.Marker({
         position: { lat: shop.lat, lng: shop.lng },
         map: map,
         title: shop.name,
       });
-    });
-  });
-}
-
-// QR Code Scanner
-const video = document.getElementById("qrScanner");
-const canvas = document.getElementById("qrCanvas");
-const qrResult = document.getElementById("qrResult");
-
-navigator.mediaDevices
-  .getUserMedia({ video: { facingMode: "environment" } })
-  .then((stream) => {
-    video.srcObject = stream;
-    video.play();
-    requestAnimationFrame(scanQR);
-  })
-  .catch((err) => {
-    qrResult.textContent = "Error accessing camera: " + err.message;
-  });
-
-function scanQR() {
-  if (video.readyState === video.HAVE_ENOUGH_DATA) {
-    canvas.height = video.videoHeight;
-    canvas.width = video.videoWidth;
-    const context = canvas.getContext("2d");
-    context.drawImage(video, 0, 0, canvas.width, canvas.height);
-    const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-    const code = jsQR(imageData.data, imageData.width, imageData.height);
-
-    if (code) {
-      qrResult.textContent = "Scanned QR Code: " + code.data;
-      loadStoreComplianceByQRCode(code.data);
     }
-  }
-  requestAnimationFrame(scanQR);
+  });
 }
 
 // Load Store Compliance
@@ -156,7 +161,7 @@ function loadStoreCompliance(shop) {
   document.getElementById("searchSection").style.display = "none";
 
   document.getElementById("shopName").textContent = "Shop Name: " + shop.name;
-  document.getElementById("ownerName").textContent = "Owner:" + shop.owner;
+  document.getElementById("ownerName").textContent = "Owner: SpazaOwner";
   document.getElementById("email").textContent = "Email: spaza@gmail.com";
   document.getElementById("phone").textContent = "Phone: 070-456-7890";
   document.getElementById("opened").textContent = "Opened: 2020";
@@ -174,30 +179,10 @@ document.getElementById("submitComment").addEventListener("click", () => {
   }
 });
 
-// Logout Functionality
-document.getElementById("logoutBtn").addEventListener("click", () => {
-  alert("Logging out...");
-
-  window.location.href = "login.html"; // Redirect to login page
+// Handle Home and Back buttons
+document.getElementById("homeButton").addEventListener("click", function () {
+  window.location.href = "index.html"; // Redirects to home page
 });
-
-// Handle login functionality
-document.getElementById("loginForm").addEventListener("submit", function (e) {
-  e.preventDefault();
-
-  const username = document.getElementById("username").value;
-  const password = document.getElementById("password").value;
-
-  const errorMessage = document.getElementById("errorMessage");
-
-  // Check credentials and redirect accordingly
-  if (username === "client" && password === "cside") {
-    window.location.href = "client.html"; // Redirect to client page
-  } else if (username === "admin" && password === "aside") {
-    window.location.href = "admin.html"; // Redirect to admin page
-  } else if (username === "owner" && password === "oside") {
-    window.location.href = "spaza.html"; // Redirect to spaza owner page
-  } else {
-    errorMessage.textContent = "Invalid username or password. Please try again.";
-  }
+document.getElementById("backButton").addEventListener("click", function () {
+  window.history.back(); // Simulates pressing the browser's back button
 });
