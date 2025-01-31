@@ -74,5 +74,42 @@
   </footer>
 
   <script src="scripts/compliance.js"></script> <!-- Link to compliance logic -->
+   <script>// Handle comment submission
+document.getElementById("submitComment").addEventListener("click", function () {
+  const commentInput = document.getElementById("commentInput");
+  const commentText = commentInput.value.trim();
+
+  if (commentText) {
+    const commentSection = document.getElementById("commentSection");
+
+    // Create a new comment card
+    const commentCard = document.createElement("div");
+    commentCard.className = "card mb-2";
+
+    const cardBody = document.createElement("div");
+    cardBody.className = "card-body";
+
+    const commentTextElement = document.createElement("p");
+    commentTextElement.className = "card-text";
+    commentTextElement.textContent = commentText;
+
+    const commentDate = document.createElement("small");
+    commentDate.className = "text-muted";
+    commentDate.textContent = "Posted on " + new Date().toISOString().split("T")[0];
+
+    cardBody.appendChild(commentTextElement);
+    cardBody.appendChild(commentDate);
+    commentCard.appendChild(cardBody);
+
+    // Add the new comment to the comment section
+    commentSection.prepend(commentCard);
+
+    // Clear the input field
+    commentInput.value = "";
+  } else {
+    alert("Please enter a comment before submitting.");
+  }
+});
+</script>
 </body>
 </html>
