@@ -149,3 +149,23 @@ button#backButton {
 button#backButton:hover {
   background-color: #5a6268;
 }
+
+body {
+  background-color: #f8f9fa;
+}
+
+.container {
+  max-width: 800px;
+}
+
+.card {
+  border-radius: 10px;
+}
+
+.btn-danger {
+  position: absolute;
+
+  right: 10px;
+
+  top: 10px;
+}

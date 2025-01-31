@@ -321,3 +321,103 @@ document.getElementById("homeButton").addEventListener("click", function () {
 document.getElementById("backButton").addEventListener("click", function () {
   window.history.back(); // Simulates pressing the browser's back button
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Save Shop Details
+
+  document.getElementById("shopForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const shopDetails = {
+      name: document.getElementById("shopName").value,
+
+      location: document.getElementById("shopLocation").value,
+
+      contact: document.getElementById("shopContact").value,
+    };
+
+    localStorage.setItem("shopDetails", JSON.stringify(shopDetails));
+
+    alert("Shop details saved!");
+  });
+
+  // Load Shop Details
+
+  const savedShop = JSON.parse(localStorage.getItem("shopDetails"));
+
+  if (savedShop) {
+    document.getElementById("shopName").value = savedShop.name;
+
+    document.getElementById("shopLocation").value = savedShop.location;
+
+    document.getElementById("shopContact").value = savedShop.contact;
+  }
+
+  // File Upload Simulation
+
+  document.getElementById("uploadFile").addEventListener("click", () => {
+    const fileInput = document.getElementById("complianceFile");
+
+    if (fileInput.files.length === 0) {
+      alert("Please select a file first.");
+
+      return;
+    }
+
+    // Simulating upload
+
+    setTimeout(() => {
+      document.getElementById("uploadStatus").textContent = "Upload successful!";
+    }, 1000);
+  });
+
+  // Simulating Comments from Customers
+
+  const comments = ["Good service!", "Your shop is clean!", "Stock variety is great."];
+
+  const commentList = document.getElementById("commentList");
+
+  comments.forEach((comment) => {
+    const li = document.createElement("li");
+
+    li.className = "list-group-item";
+
+    li.textContent = comment;
+
+    commentList.appendChild(li);
+  });
+
+  // Simulated Analytics
+
+  document.getElementById("searchCount").textContent = Math.floor(Math.random() * 100);
+
+  document.getElementById("reviewCount").textContent = comments.length;
+
+  // Logout Functionality
+
+  document.getElementById("logoutBtn").addEventListener("click", () => {
+    alert("Logging out...");
+
+    window.location.href = "login.html"; // Redirect to login page
+  });
+});
+
+document.getElementById("loginForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
+
+  const errorMessage = document.getElementById("errorMessage");
+
+  // Check credentials and redirect accordingly
+  if (username === "client" && password === "cside") {
+    window.location.href = "client.html"; // Redirect to client page
+  } else if (username === "admin" && password === "aside") {
+    window.location.href = "admin.html"; // Redirect to admin page
+  } else if (username === "owner" && password === "oside") {
+    window.location.href = "spaza.html"; // Redirect to spaza owner page
+  } else {
+    errorMessage.textContent = "Invalid username or password. Please try again.";
+  }
+});
