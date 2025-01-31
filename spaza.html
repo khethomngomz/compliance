@@ -26,7 +26,7 @@
 
             <a class="navbar-brand" href="#">Spaza Shop Owner</a>
 
-            <button class="btn btn-danger" id="logoutBtn">Logout</button>
+            <button class="btn btn-danger ms-auto" id="logoutBtn">Logout</button>
 
         </div>
 
@@ -125,7 +125,17 @@
 
 
     <script src="script.js"></script>
+  <script>
+        // Logout functionality
+        document.getElementById("logoutBtn").addEventListener("click", () => {
+            // Clear any session or user data (optional)
+            sessionStorage.clear();  // Or localStorage.clear() if you're using local storage
 
+            // Redirect to login page
+            window.location.replace("login.html");  // Replace with the correct login page URL
+        });
+    </script>
+    
 </body>
 
 </html>
