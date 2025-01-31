@@ -1,3 +1,27 @@
+// Search Functionality
+document.getElementById("searchButton").addEventListener("click", function () {
+  const query = document.getElementById("searchInput").value.toLowerCase();
+  const shops = [
+    { name: "Mohammed's Shop", location: "Jabulani", page: "compliance.html" },
+    { name: "Thembi Tuck Shop", location: "Dube", page: "thembi-compliance.html" },
+    { name: "Dino Spaza", location: "Orlando", page: "dino-compliance.html" },
+  ];
+
+  // Find the shop that matches the search query
+  const result = shops.find(
+    (shop) =>
+      shop.name.toLowerCase().includes(query) ||
+      shop.location.toLowerCase().includes(query)
+  );
+
+  if (result) {
+    // Redirect to the corresponding compliance page
+    window.location.href = result.page;
+  } else {
+    alert(translations[currentLanguage].noResults); // Use the translated 'No results' message
+  }
+});
+
 // Translation Data
 const translations = {
   en: {

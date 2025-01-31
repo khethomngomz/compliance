@@ -169,3 +169,30 @@ body {
 
   top: 10px;
 }
+/* Compliance page specific styles */
+.compliance-page {
+  background-color: #f8f9fa;
+  padding: 20px;
+}
+
+.compliance-page .card {
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.compliance-page .badge {
+  font-size: 14px;
+  padding: 5px 10px;
+}
+
+.compliance-page .list-group-item {
+  border: none;
+  padding: 10px 15px;
+}
+
+.compliance-page .comment-section .card {
+  background-color: #fff;
+  border: 1px solid #eee;
+}
