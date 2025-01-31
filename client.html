@@ -64,5 +64,54 @@
   <script src="script.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATQcX8fZiMSozcbYV8-D4UmfxcYwyDTfY&callback=initMap" async defer></script>
   
+   <script>
+    // QR Code Scanner Logic
+    const qrScanner = document.getElementById("qrScanner");
+    const qrCanvas = document.getElementById("qrCanvas");
+    const qrResult = document.getElementById("qrResult");
+
+    // Function to start the QR scanner
+    function startQRScanner() {
+      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
+          .then(function (stream) {
+            qrScanner.srcObject = stream;
+            qrScanner.setAttribute("playsinline", true); // Required for iOS
+            qrScanner.play();
+
+            // Draw video frame on canvas and scan for QR code
+            requestAnimationFrame(scanQRCode);
+          })
+          .catch(function (error) {
+            console.error("Error accessing camera: ", error);
+            alert("Please allow camera access to scan the QR code.");
+          });
+      } else {
+        alert("Camera not available.");
+      }
+    }
+
+    // Scan the QR code on the video feed
+    function scanQRCode() {
+      if (qrScanner.readyState === qrScanner.HAVE_ENOUGH_DATA) {
+        qrCanvas.height = qrScanner.videoHeight;
+        qrCanvas.width = qrScanner.videoWidth;
+        const ctx = qrCanvas.getContext("2d");
+        ctx.drawImage(qrScanner, 0, 0, qrCanvas.width, qrCanvas.height);
+        const imageData = ctx.getImageData(0, 0, qrCanvas.width, qrCanvas.height);
+        const code = jsQR(imageData.data, qrCanvas.width, qrCanvas.height, { inversionAttempts: "dontInvert" });
+
+        if (code) {
+          qrResult.textContent = `QR Code result: ${code.data}`;
+          // Here you can add logic to handle the QR code (e.g., redirect, open a modal, etc.)
+        }
+      }
+      requestAnimationFrame(scanQRCode);
+    }
+
+    // Start QR scanner when the page loads
+    window.onload = startQRScanner;
+  </script>
+  
 </body>
 </html>
