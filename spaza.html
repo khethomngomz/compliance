@@ -1,132 +1,189 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Spaza Owner Dashboard</title>
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <link rel="stylesheet" href="styles.css">
-
 </head>
-
 <body>
 
     <!-- Navbar -->
-
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-
         <div class="container">
-
             <a class="navbar-brand" href="#">Spaza Shop Owner</a>
-
             <button class="btn btn-danger" id="logoutBtn">Logout</button>
-
         </div>
-
     </nav>
 
-
-
     <div class="container mt-4">
+        <!-- Save All Success Message (Appears at Top) -->
+        <p id="saveAllMessage" class="text-success text-center fs-5" style="display:none;">Information successfully saved</p>
 
         <h2>Welcome, Spaza Owner</h2>
 
-
-
         <!-- Shop Details Form -->
-
         <div class="card p-3 mt-3">
-
             <h4>Shop Information</h4>
-
             <form id="shopForm">
-
                 <div class="mb-2">
-
                     <label class="form-label">Shop Name</label>
-
                     <input type="text" id="shopName" class="form-control" required>
-
                 </div>
-
                 <div class="mb-2">
-
                     <label class="form-label">Location</label>
-
                     <input type="text" id="shopLocation" class="form-control" required>
-
                 </div>
-
                 <div class="mb-2">
-
                     <label class="form-label">Contact Number</label>
-
                     <input type="tel" id="shopContact" class="form-control" required>
-
                 </div>
-
                 <button type="submit" class="btn btn-success">Save Details</button>
-
             </form>
-
+            <p id="saveStatus" class="text-success mt-2" style="display:none;">Details successfully saved</p>
         </div>
-
-
 
         <!-- Compliance Upload -->
-
         <div class="card p-3 mt-3">
-
             <h4>Compliance Documents</h4>
-
             <input type="file" id="complianceFile" class="form-control">
-
             <button class="btn btn-primary mt-2" id="uploadFile">Upload</button>
-
-            <p id="uploadStatus" class="text-success mt-2"></p>
-
+            <p id="uploadStatus" class="text-success mt-2" style="display:none;">File uploaded successfully</p>
+            <div id="uploadedImageContainer" class="mt-3" style="display:none;">
+                <h5>Uploaded Image:</h5>
+                <img id="uploadedImage" src="" alt="Uploaded Image" class="img-fluid" />
+            </div>
         </div>
-
-
 
         <!-- Customer Comments -->
-
         <div class="card p-3 mt-3">
-
             <h4>Customer Feedback</h4>
-
             <ul id="commentList" class="list-group"></ul>
-
         </div>
-
-
 
         <!-- Analytics -->
-
         <div class="card p-3 mt-3">
-
             <h4>Shop Analytics</h4>
-
             <p>Searches for your shop: <span id="searchCount">0</span></p>
-
             <p>Customer Reviews: <span id="reviewCount">0</span></p>
-
         </div>
 
+        <!-- Save All Button -->
+        <div class="text-center mt-4">
+            <button class="btn btn-success" id="saveAllBtn">Save All</button>
+            <button id="homeButton" class="btn btn-primary" onclick="window.location.href='dashboard.html'">Home</button>
+        </div>
     </div>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Handle shop details form submission
+            document.getElementById("shopForm").addEventListener("submit", function(event) {
+                event.preventDefault();
 
+                // Save shop details
+                let shopName = document.getElementById("shopName").value;
+                let shopLocation = document.getElementById("shopLocation").value;
+                let shopContact = document.getElementById("shopContact").value;
 
-    <script src="script.js"></script>
+                localStorage.setItem("shopDetails", JSON.stringify({ shopName, shopLocation, shopContact }));
 
-    
+                // Show success message under form
+                let saveStatus = document.getElementById("saveStatus");
+                saveStatus.style.display = "block";
+
+                // Clear form fields
+                document.getElementById("shopName").value = "";
+                document.getElementById("shopLocation").value = "";
+                document.getElementById("shopContact").value = "";
+
+                setTimeout(function() {
+                    saveStatus.style.display = "none";
+                }, 3000);
+            });
+
+            // Handle file upload
+            document.getElementById("uploadFile").addEventListener("click", function() {
+                let fileInput = document.getElementById("complianceFile");
+                let file = fileInput.files[0];
+
+                if (file) {
+                    let reader = new FileReader();
+                    reader.onload = function(e) {
+                        let uploadedImageContainer = document.getElementById("uploadedImageContainer");
+                        let uploadedImage = document.getElementById("uploadedImage");
+                        uploadedImage.src = e.target.result;
+                        uploadedImageContainer.style.display = "block";
+
+                        localStorage.setItem("complianceImage", e.target.result);
+                    };
+                    reader.readAsDataURL(file);
+
+                    // Show upload success message
+                    let uploadStatus = document.getElementById("uploadStatus");
+                    uploadStatus.style.display = "block";
+                    setTimeout(function() {
+                        uploadStatus.style.display = "none";
+                    }, 3000);
+                }
+            });
+
+            // Save All Button
+            document.getElementById("saveAllBtn").addEventListener("click", function() {
+                // Save shop details
+                let shopName = document.getElementById("shopName").value;
+                let shopLocation = document.getElementById("shopLocation").value;
+                let shopContact = document.getElementById("shopContact").value;
+                localStorage.setItem("shopDetails", JSON.stringify({ shopName, shopLocation, shopContact }));
+
+                // Save compliance file (if available)
+                let fileInput = document.getElementById("complianceFile");
+                let file = fileInput.files[0];
+                if (file) {
+                    let reader = new FileReader();
+                    reader.onload = function(e) {
+                        localStorage.setItem("complianceImage", e.target.result);
+                    };
+                    reader.readAsDataURL(file);
+                }
+
+                // Show "Information successfully saved" message at the top
+                let saveAllMessage = document.getElementById("saveAllMessage");
+                saveAllMessage.style.display = "block";
+
+                // Refresh after 3 seconds
+                setTimeout(function() {
+                    localStorage.clear(); // Clear stored data
+                    location.reload();
+                }, 3000);
+            });
+
+            // Handle logout
+            document.getElementById("logoutBtn").addEventListener("click", function() {
+                localStorage.clear();
+                alert("You have logged out successfully.");
+                window.location.href = "login.html";
+            });
+
+            // Display saved details if available
+            let savedDetails = JSON.parse(localStorage.getItem("shopDetails"));
+            if (savedDetails) {
+                document.getElementById("shopName").value = savedDetails.shopName;
+                document.getElementById("shopLocation").value = savedDetails.shopLocation;
+                document.getElementById("shopContact").value = savedDetails.shopContact;
+            }
+
+            // Display uploaded image if available
+            let savedImage = localStorage.getItem("complianceImage");
+            if (savedImage) {
+                let uploadedImageContainer = document.getElementById("uploadedImageContainer");
+                let uploadedImage = document.getElementById("uploadedImage");
+                uploadedImage.src = savedImage;
+                uploadedImageContainer.style.display = "block";
+            }
+        });
+    </script>
+
 </body>
-
 </html>

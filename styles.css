@@ -196,3 +196,33 @@ body {
   background-color: #fff;
   border: 1px solid #eee;
 }
+
+/* Dashboard page specific styles */
+.dashboard-page {
+  background-color: #f8f9fa;
+  padding: 20px;
+}
+
+.dashboard-page .card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.dashboard-page .card:hover {
+  transform: translateY(-5px);
+}
+
+.dashboard-page .card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.dashboard-page .card-text {
+  color: #555;
+}
+
+.dashboard-page .ratio iframe {
+  border-radius: 8px;
+}
