@@ -53,33 +53,33 @@ button:focus {
 }
 
 button#searchButton {
-  background-color: #007bff;
+  background: linear-gradient(#548c95, #446368);
   color: white;
   border: none;
 }
 
 button#searchButton:hover {
-  background-color: #0056b3;
+  background: linear-gradient(#548c95, #446368);
 }
 
 button#submitComment {
-  background-color: #28a745;
+  background: linear-gradient(#548c95, #446368);
   color: white;
   border: none;
 }
 
 button#submitComment:hover {
-  background-color: #218838;
+  background-color: #0056b3;
 }
 
 button#uploadButton {
-  background-color: #ffc107;
+  background: linear-gradient(#548c95, #446368);
   color: white;
   border: none;
 }
 
 button#uploadButton:hover {
-  background-color: #e0a800;
+  background-color: #0056b3;
 }
 
 #commentSection p {
@@ -103,24 +103,24 @@ button#uploadButton:hover {
 }
 
 #lang-en {
-  background-color: #17a2b8;
+  background: linear-gradient(#548c95, #446368);
   color: white;
 }
 
 #lang-zu {
-  background-color: #28a745;
+  background: linear-gradient(#548c95, #446368);
   color: white;
 }
 
 #lang-so {
-  background-color: #ffc107;
+  background: linear-gradient(#548c95, #446368);
   color: white;
 }
 
 #lang-en:hover,
 #lang-zu:hover,
 #lang-so:hover {
-  background-color: #0056b3;
+  background-color: #1d82ed;
 }
 
 button {
@@ -130,7 +130,7 @@ button {
 }
 
 button#homeButton {
-  background-color: #007bff;
+  background: linear-gradient(#548c95, #446368);
   color: white;
   border: none;
 }
@@ -140,13 +140,19 @@ button#homeButton:hover {
 }
 
 button#backButton {
-  background-color: #6c757d;
+  background: linear-gradient(#697274, #a5a8a9);
   color: white;
   border: none;
 }
 
 button#backButton:hover {
   background-color: #5a6268;
+}
+
+button#logoutButton {
+  background: linear-gradient(#955454, #ed97ab);
+  color: white;
+  border: none;
 }
 
 body {
@@ -232,6 +238,48 @@ body {
   padding: 20px; /* Space inside */
   margin: 20px auto; /* Center on page */
   max-width: 800px; /* Adjust width */
-  background-color: #fff; /* White background */
+  background: linear-gradient(#c8dee5, #919290);
   box-shadow: 0 4px 10px rgba(83, 82, 82, 0.1); /* Soft shadow */
+}
+
+.btn-primary {
+  background: linear-gradient(#548c95, #446368); /* Gradient colors */
+  border: none; /* Remove default border */
+  color: white; /* Ensure text is visible */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Optional: Add shadow */
+  transition: background 0.3s ease; /* Smooth transition for hover effect */
+}
+
+a {
+  color: #5f96f4; /* Link color */
+  text-decoration: none; /* Remove underline */
+  font-weight: bold; /* Make text bold */
+  transition: color 0.3s ease; /* Smooth color transition */
+}
+
+a:hover {
+  color: #a153f6; /* Change color on hover */
+  text-decoration: underline; /* Add underline on hover */
+}
+
+.comments-container {
+  background: linear-gradient(#d2dbdd, #c1c3c4); /* Gradient colors */
+  border: none; /* Remove default border */
+  border-radius: 8px; /* Rounded corners */
+  padding: 20px; /* Padding inside the container */
+  color: white; /* Text color for better contrast */
+}
+
+.card-title,
+.card-subtitle,
+.card-text {
+  color: black;
+}
+
+.input-container {
+  background: linear-gradient(#c5c8c9, #e8eef0); /* Gradient colors */
+  border: none; /* Remove default border */
+  border-radius: 8px; /* Rounded corners */
+  padding: 20px; /* Padding inside the container */
+  color: white; /* Text color for better contrast */
 }

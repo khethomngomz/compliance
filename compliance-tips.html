@@ -21,19 +21,19 @@
   </nav>
 
   <!-- Main Content -->
-  <div class="container mt-5">
+  <div class="container mt-5 ">
     <h1 class="text-center mb-4">Compliance Tips</h1>
     <div class="row">
-      <div class="col-md-4 mb-4">
-        <div class="card h-100">
-          <div class="card-body">
-            <h5 class="card-title">1. Regular Inspections</h5>
-            <p class="card-text">Ensure your shop undergoes regular inspections to maintain compliance.</p>
+      <div class="col-md-4 mb-4 ">
+        <div class="card h-100 comments-container">
+          <div class="card-body ">
+            <h5 class="card-title" >1. Regular Inspections</h5>
+            <p class="card-text" >Ensure your shop undergoes regular inspections to maintain compliance.</p>
           </div>
         </div>
       </div>
       <div class="col-md-4 mb-4">
-        <div class="card h-100">
+        <div class="card h-100 comments-container">
           <div class="card-body">
             <h5 class="card-title">2. Proper Waste Disposal</h5>
             <p class="card-text">Dispose of waste properly to keep your shop clean and avoid penalties.</p>
@@ -41,7 +41,7 @@
         </div>
       </div>
       <div class="col-md-4 mb-4">
-        <div class="card h-100">
+        <div class="card h-100 comments-container">
           <div class="card-body">
             <h5 class="card-title">3. Display Licenses</h5>
             <p class="card-text">Always display your business license and compliance certificates visibly.</p>
@@ -49,7 +49,7 @@
         </div>
       </div>
       <div class="col-md-4 mb-4">
-        <div class="card h-100">
+        <div class="card h-100 comments-container">
           <div class="card-body">
             <h5 class="card-title">4. Food Safety Standards</h5>
             <p class="card-text">Ensure all food products meet safety standards and are properly stored.</p>
@@ -57,7 +57,7 @@
         </div>
       </div>
       <div class="col-md-4 mb-4">
-        <div class="card h-100">
+        <div class="card h-100 comments-container">
           <div class="card-body">
             <h5 class="card-title">5. Fire Safety Measures</h5>
             <p class="card-text">Install fire extinguishers and ensure emergency exits are accessible at all times.</p>
@@ -65,7 +65,7 @@
         </div>
       </div>
       <div class="col-md-4 mb-4">
-        <div class="card h-100">
+        <div class="card h-100 comments-container">
           <div class="card-body">
             <h5 class="card-title">6. Quality Control</h5>
             <p class="card-text">Check product quality regularly to ensure expired or counterfeit goods are not sold.</p>
@@ -89,32 +89,33 @@
   </div>
 
   <!-- Report a Store Section -->
+    <div class="bordered-container">
   <div class="container mt-5 mb-5">
     <h2 class="text-center mb-4">Report a Non-Compliant Store</h2>
     <form>
       <div class="mb-3">
         <label for="storeName" class="form-label">Store Name</label>
-        <input type="text" class="form-control" id="storeName" placeholder="Enter store name" required>
+        <input type="text" class="form-control input-container" id="storeName" placeholder="Enter store name" required>
       </div>
       <div class="mb-3">
         <label for="storeLocation" class="form-label">Store Location</label>
-        <input type="text" class="form-control" id="storeLocation" placeholder="Enter store location" required>
+        <input type="text" class="form-control input-container" id="storeLocation" placeholder="Enter store location" required>
       </div>
       <div class="mb-3">
         <label for="storeImages" class="form-label">Upload Images</label>
-        <input type="file" class="form-control" id="storeImages" multiple>
+        <input type="file" class="form-control input-container" id="storeImages" multiple>
       </div>
       <div class="mb-3">
         <label for="comments" class="form-label">Comments</label>
-        <textarea class="form-control" id="comments" rows="4" placeholder="Describe the issue..." required></textarea>
+        <textarea class="form-control input-container" id="comments" rows="4" placeholder="Describe the issue..." required></textarea>
       </div>
-      <button type="submit" class="btn btn-success">Submit Report</button>
+      <button type="submit" class="btn btn-primary">Submit Report</button>
     </form>
   </div>
-
+    </div>
   <!-- Footer -->
   <footer class="bg-dark text-white text-center py-3">
-    <p>&copy; 2025 Developed by Thuthukatech</p>
+    <p>&copy; 2025 Developed by <a href="https://techthuthuka.vercel.app/">Thuthukatech</a></p>
   </footer>
 </body>
 </html>

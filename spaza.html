@@ -15,7 +15,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Owner details</a>
-                  <button class="btn btn-danger" id="logoutBtn">Logout</button>
+        <button id="logoutButton" class="btn btn-warning">Logout</button>
 
     </div>
   </nav>
@@ -27,30 +27,30 @@
        
 
       <div class="bordered-container">
-            <h1 class="text-dark text-center mb-4">Compliance Details</h1>
+            <h1 class="text-dark text-center mb-4 ">Compliance Details</h1>
 
     <h4>Shop Information</h4>
     <form id="shopForm">
         <div class="mb-2">
             <label class="form-label">Shop Name</label>
-            <input type="text" id="shopName" class="form-control" required>
+            <input type="text" id="shopName" class="form-control input-container" required>
         </div>
         <div class="mb-2">
             <label class="form-label">Location</label>
-            <input type="text" id="shopLocation" class="form-control" required>
+            <input type="text" id="shopLocation" class="form-control input-container" required>
         </div>
         <div class="mb-2">
             <label class="form-label">Contact Number</label>
-            <input type="tel" id="shopContact" class="form-control" required>
+            <input type="tel" id="shopContact" class="form-control input-container" required>
         </div>
-        <button type="submit" class="btn btn-success">Save Details</button>
+        <button type="submit" class="btn btn-primary">Save Details</button>
     </form>
     <p id="saveStatus" class="text-success mt-2" style="display:none;">Details successfully saved</p>
 
     <!-- Compliance Upload -->
-    <div class="card p-3 mt-3">
+    <div class="card p-3 mt-3 card-text comments-container">
         <h4>Compliance Documents</h4>
-        <input type="file" id="complianceFile" class="form-control">
+        <input type="file" id="complianceFile" class="form-control comments-container">
         <button class="btn btn-primary mt-2" id="uploadFile">Upload</button>
         <p id="uploadStatus" class="text-success mt-2" style="display:none;">File uploaded successfully</p>
         <div id="uploadedImageContainer" class="mt-3" style="display:none;">
@@ -60,13 +60,13 @@
     </div>
 
     <!-- Customer Comments -->
-    <div class="card p-3 mt-3">
+    <div class="card p-3 mt-3 card-text comments-container">
         <h4>Customer Feedback</h4>
-        <ul id="commentList" class="list-group"></ul>
+        <ul id="commentList" class="list-group "></ul>
     </div>
 
     <!-- Analytics -->
-    <div class="card p-3 mt-3">
+    <div class="card p-3 mt-3 comments-container card-text">
         <h4>Shop Analytics</h4>
         <p>Searches for your shop: <span id="searchCount">0</span></p>
         <p>Customer Reviews: <span id="reviewCount">0</span></p>
@@ -74,15 +74,15 @@
 
     <!-- Save All Button -->
     <div class="text-center mt-4">
-        <button class="btn btn-success" id="saveAllBtn">Save All</button>
+        <button class="btn btn-primary" id="saveAllBtn">Save All</button>
         <button id="homeButton" class="btn btn-primary" onclick="window.location.href='dashboard.html'">Home</button>
     </div>
 </div>
 
     </div>
-    <!-- Footer -->
-  <footer class="bg-dark text-white text-center py-3 mt-5">
-    <p>&copy; 2025 Developed by Thuthukatech</p>
+   <!-- Footer -->
+  <footer class="bg-dark text-white text-center py-3">
+    <p>&copy; 2025 Developed by <a href="https://techthuthuka.vercel.app/">Thuthukatech</a></p>
   </footer>
 
     <script>

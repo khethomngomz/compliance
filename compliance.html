@@ -20,10 +20,10 @@
   <!-- Main Content -->
   <div class="bordered-container">
 
-    <h1 class="text-center mb-4">Compliance Details</h1>
+    <h1 class="text-center mb-4 ">Compliance Details</h1>
 
     <!-- Shop Information -->
-    <div class="card p-3 mb-4">
+    <div class="card p-3 mb-4 card-text comments-container ">
       <h3>Shop Information</h3>
       <p><strong>Shop Name:</strong> <span id="shopName">Mohammed Tuck Shop</span></p>
       <p><strong>Owner:</strong> <span id="ownerName">Mohammed John</span></p>
@@ -33,7 +33,7 @@
     </div>
 
     <!-- Compliance Status -->
-    <div class="card p-3 mb-4">
+    <div class="card p-3 mb-4 card-text comments-container">
       <h3>Compliance Status</h3>
       <p><strong>Status:</strong> <span id="complianceStatus" class="badge bg-success">Compliant</span></p>
       <p><strong>Last Inspection Date:</strong> <span id="inspectionDate">2023-10-01</span></p>
@@ -41,9 +41,9 @@
     </div>
 
     <!-- Uploaded Documents -->
-    <div class="card p-3 mb-4">
+    <div class="card p-3 mb-4 card-text comments-container">
       <h3>Uploaded Compliance Documents</h3>
-      <ul id="documentList" class="list-group">
+      <ul id="documentList" class="list-group comments-container">
         <li class="list-group-item">Business License</li>
         <li class="list-group-item">Health and Safety Certificate</li>
         <li class="list-group-item">Tax Compliance Certificate</li>
@@ -51,19 +51,19 @@
     </div>
 
     <!-- Comments Section -->
-    <div class="card p-3 mb-4">
+    <div class="card p-3 mb-4 card-text comments-container">
       <h3>Comments</h3>
-      <textarea id="commentInput" class="form-control mb-3" placeholder="Leave a comment"></textarea>
+      <textarea id="commentInput" class="form-control mb-3 input-container" placeholder="Leave a comment"></textarea>
       <button id="submitComment" class="btn btn-success">Submit Comment</button>
-      <div id="commentSection" class="mt-3">
-        <div class="card mb-2">
+      <div id="commentSection" class="mt-3 ">
+        <div class="card mb-2 comments-container">
           <div class="card-body">
             <p class="card-text">Great service and clean shop!</p>
             <small class="text-muted">Posted on 2023-10-05</small>
           </div>
         </div>
-        <div class="card mb-2">
-          <div class="card-body">
+        <div class="card mb-2 comments-container">
+          <div class="card-body ">
             <p class="card-text">Friendly staff and good prices.</p>
             <small class="text-muted">Posted on 2023-10-10</small>
           </div>
@@ -73,8 +73,8 @@
   </div>
 
   <!-- Footer -->
-  <footer class="bg-dark text-white text-center py-3 mt-5">
-    <p>&copy; 2025 Developed by Thuthukatech</p>
+  <footer class="bg-dark text-white text-center py-3">
+    <p>&copy; 2025 Developed by <a href="https://techthuthuka.vercel.app/">Thuthukatech</a></p>
   </footer>
 
   <script src="scripts/compliance.js"></script> <!-- Link to compliance logic -->
