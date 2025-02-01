@@ -149,10 +149,8 @@ button#backButton:hover {
   background-color: #5a6268;
 }
 
-button#logoutButton {
-  background: linear-gradient(#955454, #ed97ab);
-  color: white;
-  border: none;
+#homeButton {
+  background: linear-gradient(#548c95, #446368);
 }
 
 body {
@@ -282,4 +280,78 @@ a:hover {
   border-radius: 8px; /* Rounded corners */
   padding: 20px; /* Padding inside the container */
   color: white; /* Text color for better contrast */
+}
+
+.gradient-home-button {
+  background: linear-gradient(to right, #6a11cb, #2575fc); /* Gradient colors */
+  border: none; /* Remove default border */
+  color: white; /* Text color */
+  padding: 10px 20px; /* Adjust padding as needed */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Optional: Add shadow */
+  transition: background 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* Admin page specific styles */
+.admin-page {
+  background-color: #f8f9fa;
+  padding: 20px;
+}
+
+.admin-page .card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.admin-page .alert {
+  margin-bottom: 20px;
+}
+
+.admin-page .table {
+  margin-bottom: 0;
+}
+
+.admin-page .gradient-home-button {
+  background: linear-gradient(45deg, #007bff, #00ff88);
+  border: none;
+  color: white;
+  font-weight: bold;
+}
+
+.edit-btn {
+  background: linear-gradient(#548c95, #446368);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.delete-btn {
+  background: linear-gradient(45deg, #ed6464, #ff1744);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.edit-btn:hover {
+  background: linear-gradient(#548c95, #446368);
+}
+
+.delete-btn:hover {
+  background: linear-gradient(45deg, #c62828, #d50000);
+}
+
+.save-btn {
+  background: linear-gradient(#548c95, #446368);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.save-btn:hover {
+  background: linear-gradient(45deg, #2e7d32, #43a047);
 }

@@ -10,7 +10,7 @@
 
 </head>
 <body>
-  <!-- Navbar -->
+ 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="/dashboard.html">SpazaCom</a>
@@ -22,7 +22,7 @@
     </div>
   </nav>
 
-  <!-- Main Content -->
+
 <div class="bordered-container">
     <div class="container mt-5">
         <div id="qrSection">
@@ -61,7 +61,7 @@
     </div>
 </div>
 
-  <!-- Footer -->
+ 
   <footer class="bg-dark text-white text-center py-3">
     <p>&copy; 2025 Developed by <a href="https://techthuthuka.vercel.app/">Thuthukatech</a></p>
   </footer>
@@ -70,12 +70,12 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATQcX8fZiMSozcbYV8-D4UmfxcYwyDTfY&callback=initMap" async defer></script>
 
    <script>
-    // QR Code Scanner Logic
+    // QR Code Scanner 
     const qrScanner = document.getElementById("qrScanner");
     const qrCanvas = document.getElementById("qrCanvas");
     const qrResult = document.getElementById("qrResult");
 
-    // Function to start the QR scanner
+    //  start QR scanner
     function startQRScanner() {
       if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
@@ -96,7 +96,7 @@
       }
     }
 
-    // Scan the QR code on the video feed
+    // video feed scan
     function scanQRCode() {
       if (qrScanner.readyState === qrScanner.HAVE_ENOUGH_DATA) {
         qrCanvas.height = qrScanner.videoHeight;
@@ -108,13 +108,12 @@
 
         if (code) {
           qrResult.textContent = `QR Code result: ${code.data}`;
-          // Here you can add logic to handle the QR code (e.g., redirect, open a modal, etc.)
+          // in case I want to add logic to handle the QR code (e.g., redirect, open a modal, etc.)
         }
       }
       requestAnimationFrame(scanQRCode);
     }
 
-    // Start QR scanner when the page loads
     window.onload = startQRScanner;
   </script>
   

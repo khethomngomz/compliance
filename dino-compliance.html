@@ -5,23 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dino Spaza Compliance</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css"> <!-- Link to global styles -->
+  <link rel="stylesheet" href="styles.css"> 
       <link rel="icon" type="image/x-icon" href="spazacomicon.ico" rounded>
 
 </head>
 <body >
-  <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="dashboard.html">Dino Spaza Compliance</a>
     </div>
   </nav>
 
-  <!-- Main Content -->
     <div class="bordered-container">
     <h1 class="text-center mb-4">Compliance Details</h1>
 
-    <!-- Shop Information -->
     <div class="card p-3 mb-4 card-text comments-container">
       <h3>Shop Information</h3>
       <p><strong>Shop Name:</strong> <span id="shopName">Dino Spaza</span></p>
@@ -31,7 +28,6 @@
       <p><strong>Opened:</strong> <span id="openedYear">2015</span></p>
     </div>
 
-    <!-- Compliance Status -->
     <div class="card p-3 mb-4 card-text comments-container">
       <h3>Compliance Status</h3>
       <p><strong>Status:</strong> <span id="complianceStatus" class="badge bg-danger">Non-Compliant</span></p>
@@ -39,7 +35,6 @@
       <p><strong>Next Inspection Due:</strong> <span id="nextInspectionDate">2024-02-20</span></p>
     </div>
 
-    <!-- Uploaded Documents -->
     <div class="card p-3 mb-4 card-text comments-container">
       <h3>Uploaded Compliance Documents</h3>
       <ul id="documentList" class="list-group comments-container">
@@ -47,7 +42,6 @@
       </ul>
     </div>
 
-    <!-- Comments Section -->
     <div class="card p-3 mb-4 card-text comments-container">
       <h3>Comments</h3>
       <textarea id="commentInput" class="form-control mb-3 input-container" placeholder="Leave a comment"></textarea>
@@ -69,48 +63,11 @@
     </div>
   </div>
 
-  <!-- Footer -->
   <footer class="bg-dark text-white text-center py-3">
     <p>&copy; 2025 Developed by <a href="https://techthuthuka.vercel.app/">Thuthukatech</a></p>
   </footer>
 
-  <script src="scripts/compliance.js"></script> <!-- Link to compliance logic -->
-   <script>// Handle comment submission
-document.getElementById("submitComment").addEventListener("click", function () {
-  const commentInput = document.getElementById("commentInput");
-  const commentText = commentInput.value.trim();
-
-  if (commentText) {
-    const commentSection = document.getElementById("commentSection");
-
-    // Create a new comment card
-    const commentCard = document.createElement("div");
-    commentCard.className = "card mb-2";
-
-    const cardBody = document.createElement("div");
-    cardBody.className = "card-body";
-
-    const commentTextElement = document.createElement("p");
-    commentTextElement.className = "card-text";
-    commentTextElement.textContent = commentText;
-
-    const commentDate = document.createElement("small");
-    commentDate.className = "text-muted";
-    commentDate.textContent = "Posted on " + new Date().toISOString().split("T")[0];
-
-    cardBody.appendChild(commentTextElement);
-    cardBody.appendChild(commentDate);
-    commentCard.appendChild(cardBody);
-
-    // Add the new comment to the comment section
-    commentSection.prepend(commentCard);
-
-    // Clear the input field
-    commentInput.value = "";
-  } else {
-    alert("Please enter a comment before submitting.");
-  }
-});
-</script>
+  <script src="compliance.js"></script> 
+  
 </body>
 </html>
